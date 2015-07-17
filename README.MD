@@ -8,18 +8,18 @@
 
 ## Comandos AT
 
-AT
+- AT
 
-AT+RST
+- AT+RST
 
-AT+CWMODE=3
+- AT+CWMODE=3
 
 // Reemplazar *TP-LINK* por su SSID y *pass* por su contraseña real.
-AT+CWJAP="TP-LINK_2","pass"
+- AT+CWJAP="TP-LINK_2","pass"
 
-AT+CIPMUX=1
+- AT+CIPMUX=1
 
 // Con este comando consiguen la IP
-AT+CIFSR
+- AT+CIFSR
 
-AT+CIPSERVER=1,80
+- AT+CIPSERVER=1,80
