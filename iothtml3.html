@@ -1,0 +1,96 @@
+<html>
+	<head>
+		<title>ESP8266 LED Control</title>
+		<link href="css/bootstrap.min.css" rel="stylesheet"/>
+		<style>
+		h1 {
+			text-align: center;
+		}
+
+		.off {
+			background-image: url('media/bulb_off.jpg');
+			background-size: 300px 400px;
+			background-repeat: no-repeat;
+			cursor: pointer;
+			margin: 0 auto;
+			height: 400px;
+			width: 300px;
+		}
+
+		.on {
+			background-image: url('media/bulb_on.png');
+			background-size: 300px 400px;
+			background-repeat: no-repeat;
+			cursor: pointer;
+			margin: 0 auto;
+			height: 400px;
+			width: 300px;
+		}
+		
+		
+		</style>
+	</head>
+	<body>
+	
+		<h1>LED</h1>
+	
+		<div class="container">
+			<div class="row">
+				<div class="col-md-4">
+					<img class="img-responsive led" alt="" src="media/bulb_off.jpg" id="P13"/>
+				</div>
+				<div class="col-md-4">
+					<img class="img-responsive led" alt="" src="media/bulb_off.jpg" id="P12"/>
+				</div>
+				<div class="col-md-4">
+					<img class="img-responsive led" alt="" src="media/bulb_off.jpg" id="P11"/>
+				</div>
+			</div>
+		</div>
+		
+	<script src="jquery-2.0.0.min.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function(){
+			$(".led").click(function(){
+				var p = $(this).attr('id');
+				var $thisLed = $(this);
+				var $thisLedSrc = $(this).attr('src');
+
+				function changePic() {
+					var src = $thisLedSrc;
+					
+					if (src == 'media/bulb_off.jpg') {
+						$thisLed.attr('src', 'media/bulb_on.png');
+					} else {
+						$thisLed.attr('src', 'media/bulb_off.jpg');
+					}
+				}
+
+				function led() {
+					console.log('led!');
+					$.ajax({
+						type: "GET",
+						url: "http://192.168.1.100:80",
+						data: 'P=' + p,
+						async: true,
+						timeout: 1000,
+					});
+					persona.changePic();
+				}
+				
+				var persona = {
+					name: 'zahid',
+					lastName: 'dehara',
+					changePic: changePic,
+					led: led,
+					email: 'email@email.com'
+				}
+								
+				persona.led();				
+				
+			});
+		});
+	</script>
+	<script src="js/bootstrap.min.js"></script>
+	</body>
+</html>
